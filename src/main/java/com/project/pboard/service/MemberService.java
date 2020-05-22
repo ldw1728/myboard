@@ -12,8 +12,6 @@ import com.project.pboard.model.MemberEntity;
 import com.project.pboard.repo.MemberRepository;
 
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,7 +29,6 @@ public class MemberService implements UserDetailsService {
     public static UserInfo userInfo;
     private MemberRepository memberRepository;
 
-    static Logger logger = LoggerFactory.getLogger(MemberService.class);
 
     @Transactional 
     public Long joinUser(MemberDto memberDto){ //회원가입을 처리하는 메소드

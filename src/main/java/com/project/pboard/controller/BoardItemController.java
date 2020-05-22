@@ -66,7 +66,6 @@ public class BoardItemController {
     @PostMapping("/newpost")
     public String createNewPost(BoardItemDTO.BoardDetailDTO bdd, @RequestParam("uploadFiles") MultipartFile[] files) throws IllegalAccessException,
             FileUploadException {
-                logger.debug("createNewPost()");
        
         Long result = bis.saveBoardItemEntity(bdd);
         if(result == -1){
@@ -88,7 +87,7 @@ public class BoardItemController {
 
             fileService.getFiles(boardDetailDTO.getId());
             model.addAttribute("files", fileService.getTemp());
-            logger.debug(fileService.getTemp().size()+"");
+            
             bis.saveCount(boardDetailDTO);
             model.addAttribute("boardDto", boardDetailDTO);
             model.addAttribute("comments", commentsService.getComments(boardDetailDTO.getId()));

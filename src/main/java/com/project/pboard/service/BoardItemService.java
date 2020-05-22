@@ -10,8 +10,6 @@ import com.project.pboard.repo.BoardItemRepository;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +25,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BoardItemService {
-
-    static Logger logger = LoggerFactory.getLogger(BoardItemService.class);
 
     private  List<BoardItemDTO.BoardDetailDTO> boardDetailDTOs = new ArrayList<>();
     private PagingVO pagingVO;
@@ -49,7 +45,7 @@ public class BoardItemService {
         
         ModelMapper mm = new ModelMapper();
         boardDetailDTOs = mm.map(pageData.getContent(), new TypeToken<List<BoardItemDTO.BoardDetailDTO>>(){}.getType());
-        //logger.debug(BoardDetailDTOs.get(0).getModifiedDate()+"");
+       
         return boardDetailDTOs; //boardMainDTO를 이용하여 해당페이지에 필요한 내용만 컨트롤러로 넘겨준다.
     }
 

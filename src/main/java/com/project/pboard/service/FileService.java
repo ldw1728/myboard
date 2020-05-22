@@ -1,8 +1,7 @@
 package com.project.pboard.service;
 
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +20,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class FileService {
-    static Logger logger = LoggerFactory.getLogger(FileService.class);
     private FileRepository fileRepository;
     private List<FileEntity> temp = new ArrayList<>();
 
@@ -48,7 +46,7 @@ public class FileService {
     public List<FileEntity> getFiles(Long bid){
         temp.clear();
         temp = fileRepository.findByBid(bid);
-        logger.debug(temp.size()+"");
+       
         return temp;
     }
 }
