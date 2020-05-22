@@ -74,9 +74,12 @@ public class BoardItemService {
         bidto.setCount(bidto.getCount()+1);
         return bir.save(bidto.toEntity()).getId();
     }
+    @Transactional
+	public Long deletePost(int id) {
+        Long bid = boardDetailDTOs.get(id).getId();
+        bir.deleteById(bid);
 
-	public void deletePost(int id) {
-        bir.deleteById(boardDetailDTOs.get(id).getId());
+        return bid;
     }
 
     @Transactional

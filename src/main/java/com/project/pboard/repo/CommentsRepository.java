@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommentsRepository extends JpaRepository<CommentsEntity, Long>{
     List<CommentsEntity> findByBid(Long bid);
+    void deleteByBid(Long bid);
+
 }   

@@ -141,7 +141,7 @@ public class BoardItemController {
 
     @DeleteMapping("/delete/{no}")
     public String deletePost(@PathVariable("no") int no){
-        bis.deletePost(no-1);
+        commentsService.deleteComments(bis.deletePost(no-1));
         return "redirect:/board/main";
 
     }

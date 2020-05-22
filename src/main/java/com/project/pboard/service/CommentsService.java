@@ -3,6 +3,8 @@ package com.project.pboard.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.project.pboard.model.CommentsDTO;
 import com.project.pboard.repo.CommentsRepository;
 
@@ -29,5 +31,9 @@ public class CommentsService {
 
         return comments;
 
+    }
+    @Transactional
+    public void deleteComments(Long bid){
+        commentsRepository.deleteByBid(bid);
     }
 }
