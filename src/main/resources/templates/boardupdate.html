@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"></html>
+<head>
+
+    <link rel="stylesheet" href="/css/boardupdate.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container">
+    <div class="boardview">
+        <form th:action="@{'/board/edit/' + ${boardItemDTO.id}}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PUT"/>
+            <input type="hidden" name="id" th:value="${boardItemDTO.id}"/>
+            <div class="form-group">
+                <label for="title"><h6>제목:</h6></label>
+                <input class="form-control" type="text" name="title" th:value="${boardItemDTO.title}">
+            </div>
+            <h6>작성자 : [[${boardItemDTO.writer.name}]]</h6> 
+            <div class="form-group">
+                <label for="comment"><h6>내용:</h6></label>
+                <textarea style="overflow-y: visible; resize: none;"class="form-control" id="comment"name="contents" rows="10" cols="10" th:text="${boardItemDTO.contents}"></textarea>
+            </div>
+        
+            <br>        
+            <div style="text-align: right;">
+                <input type="file" id="file" name="uploadFiles" multiple="multiple">
+                <button class="btn btn-outline-dark" type="submit" value="수정">수정</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

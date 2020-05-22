@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/boardmain.css">
+    <title>Main</title>
+</head>
+<body class="container" >
+  
+   <div class="boardview">
+      <table class="table table-hover">
+         <thead class="thead-dark">
+            <tr><th>번호</th><th>제목</th><th>글쓴이</th><th>날짜</th><th>조회수</th></tr>
+         </thead>
+         <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${itemStat.count}"></td>
+                      <td class="td-title"><a th:href="@{'/board/detail/' + ${itemStat.count}}"><span th:text="${item.title}"></span></a></td> 
+                      <td th:text="${item.writer.name}"></td>
+                      <td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+                      <td th:text="${item.count}"></td>
+                   </tr>
+         </tbody>
+     </table>
+     <ul class="pagination" th:if="${page != null}">
+        <li class="page-item"><a class="page-link" th:href="@{'/board/main?page='+${page.number-1}}">Previous</a></li>
+        <li id="biatag" class="page-item"  th:each="Page : ${#numbers.sequence(page.FP,page.FP+4)}">
+            <a th:if="${page.totalPages >= page.FP+PageStat.index}" class="page-link" th:href="@{'/board/main?page='+${page.FP+PageStat.index}}">[[${page.FP+PageStat.index}]]</a>
+            
+        </li>
+        <li class="page-item"><a class="page-link" th:href="@{'/board/main?page='+${page.number+1}}">Next</a></li>
+     </ul>
+
+     <ul class="pagination" th:unless="${page != null}">
+      <li class="page-item"><a class="page-link" th:href="@{/board/search/page?stat=prev}">Previous</a></li>
+      <li class="page-item"><a class="page-link" th:href="@{/board/search/page?stat=next}">Next</a></li>
+     </ul>
+     
+     <span class="btnlo">
+             <form action="/board/search" method="get">
+                <input class="form-controll" type="text" name="keyword" placeholder="검색어를 입력해주세요"/>
+                <button class="btn btn-outline-dark">검색</button>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='/board/newpost'">글쓰기</button>
+             </form>
+            </span>
+   </div>
+</body>
+</html>

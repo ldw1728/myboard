@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="/src/main/resources/static/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <head>
+        <title>
+            signUp Page
+        </title>
+        <link href="/css/signup.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <div class="span3 well">
+            <legend>Sign up!</legend>
+          <form accept-charset="UTF-8" th:action="@{/signup}" method="post">
+           
+              <input class="span3" name="name" placeholder="Name" type="text"> 
+              <input class="span3" name="email" placeholder="email" type="email">
+              <input class="span3" name="password" placeholder="Password" type="password"> 
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up for WebApp</button>
+          </form>
+      </div>
+
+    </body>
+    
+</html>
+

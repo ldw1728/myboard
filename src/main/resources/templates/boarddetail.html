@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/css/boarddetail.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body class="container">
+
+    <input id = "num" type="hidden" value="${num}">
+<div class="boardview">
+    <h1 style="padding: 10px;"th:text="${boardDto.title}"></h1>
+   <h6>작성자 : [[${boardDto.writer.name}]]</h6>
+   <h6 th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</h6>
+   
+    <p class="contents" th:text="${boardDto.contents}"></p>
+
+    <p>
+        <div th:if="${files.size() > 0}" class="list-group" >
+            <a th:each="file : ${files}" th:href="@{'/board/detail/'+${num}+'/download/'+${fileStat.index}}" class="list-group-item list-group-item-action">
+                [[${file.fileName}]]
+            </a>
+        </div>
+    </p>
+    <div th:if="${writer == true}"class="board-btns">
+        <a th:href="@{'/board/edit/' + ${num}}">
+            <button class="btn btn-outline-dark btn-sm">수정</button>
+        </a>
+   
+        <form id="delete-form" th:action="@{'/board/delete/' + ${num}}" method="post">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <button id="delete-btn" class="btn btn-outline-dark btn-sm">삭제</button>
+        </form>
+    </div>
+           
+                <button id="commentBtn"style="font-weight: bold; font-size: medium;"class="btn btn-outline-dark btn-sm">댓글  [[${comments.size()}]]</button>
+                <br><br>
+                
+        <div id="commentGroup" class="commentGroup">
+                <div id="commentForm" class="form-group">
+                    <form th:action="@{'/board/newcomment/'+${num}+'/'+${boardDto.id}}" method='post'>
+                        <label for='comment'><h6>내용:</h6></label>
+                        <textarea style='overflow-y: visible; resize: none;' class='form-control' name='comment' id='comment'></textarea>
+                        <div style="text-align: right; margin-top: 10px;"><button type='submit' class='btn btn-outline-dark btn-sm'>등록</button></div>
+                    </form>
+                </div>
+                
+                <div class="comment" th:each="commentDTO : ${comments}">
+                    <label for="comment"><span id="comment-writer">[[${commentDTO.writer}]]</span><span id="comment-date">[[${#temporals.format(commentDTO.createdDate, 'yyyy-MM-dd HH:mm')}]]</span></label>
+                    <div>[[${commentDTO.comment}]]</div>
+                </div>
+        </div>
+</div>
+<!--<img class="bg" src="/img/1.jpg">-->
+<script src="/js/boarddetail.js"></script>
+</body>
+</html>
