@@ -302,9 +302,6 @@
 
   .container {
     
-    
-    
-
     background-image: url(/img/2.jpg);
     background-size: cover;
     background-attachment: fixed;
@@ -338,8 +335,8 @@
   }
   .boardview{
     
-    width: 120%;
-    margin-left: -100px;
+    width: 100%;
+    
     margin-top: 150px;
     background-color: white;
     padding: 50px;
