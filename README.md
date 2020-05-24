@@ -1,6 +1,7 @@
 # myboard
 ## 내용
-spring boot 를 이용하여 구현한 게시판
+spring boot 를 이용하여 구현한 게시판    
+http://13.209.44.126:8080/
 
 ## 기술
 front end - bootstap    
@@ -13,7 +14,7 @@ back end -
  - security로 권한 및 로그인 기능 구현.
  - mysql과 연동하여 CRUD기능 구현 (생성, 조회, 수정, 삭제)
  - 댓글 기능, 조회수 기능
- - aws ec2를 이용하여 연동.
+ - aws ec2를 이용하여 배포.
  
 
 ## 구동
