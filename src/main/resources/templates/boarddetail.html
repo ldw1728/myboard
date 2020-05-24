@@ -29,7 +29,7 @@
             <button class="btn btn-outline-dark btn-sm">수정</button>
         </a>
    
-        <form id="delete-form" th:action="@{'/board/delete/' + ${num}}" method="post">
+        <form id="delete-form" th:action="@{'/board/detail/' + ${num}}" method="post">
             <input type="hidden" name="_method" value="DELETE"/>
             <button id="delete-btn" class="btn btn-outline-dark btn-sm">삭제</button>
         </form>
