@@ -22,7 +22,7 @@
         <div th:if="${files.size() > 0}" class="list-group" >
             <a th:each="file : ${files}" th:href="@{'/board/detail/'+${num}+'/download/'+${fileStat.index}}" class="list-group-item list-group-item-action">
                 [[${file.fileName}]]
-            </a>
+            </a>   
         </div>
     </p>
     <div th:if="${writer == true}"class="board-btns">
