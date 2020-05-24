@@ -10,8 +10,8 @@ back end -
 * server : aws ec2 amazon linux2    
 
 ## 구동
-<img src="/myboard/login.png" width="300" height="250"></img>
-<img src="/myboard/main.png" width="300" height="250"></img>
-<img src="/myboard/new.png" width="300" height="250"></img>
-<img src="/myboard/detail.png" width="300" height="250"></img>
-<img src="/myboard/detailComment.png" width="300" height="250"></img>
+<img src="/myboard/login.PNG" width="300" height="250"></img>
+<img src="/myboard/main.PNG" width="300" height="250"></img>
+<img src="/myboard/new.PNG" width="300" height="250"></img>
+<img src="/myboard/detail.PNG" width="300" height="250"></img>
+<img src="/myboard/detailComment.PNG" width="300" height="250"></img>
