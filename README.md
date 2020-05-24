@@ -8,6 +8,13 @@ back end -
 * framwork : springboot(security, thymeleaf, jpa, lombok, modelmapper)   
 * DB : mysql    
 * server : aws ec2 amazon linux2    
+## 기능
+ - boot strap 을 이용하여 front end 구현
+ - security로 권한 및 로그인 기능 구현.
+ - mysql과 연동하여 CRUD기능 구현 (생성, 조회, 수정, 삭제)
+ - 댓글 기능, 조회수 기능
+ - aws ec2를 이용하여 연동.
+ 
 
 ## 구동
 <img src="/myboard/login.PNG" width="400" height="250"></img>
