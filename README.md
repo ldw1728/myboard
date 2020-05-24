@@ -4,8 +4,8 @@ spring boot 를 이용하여 구현한 게시판
 http://13.209.44.126:8080
 
 ## 기술
-front end - bootstap    
-back end -    
+frontend - bootstap    
+backend -    
 * framwork : springboot(security, thymeleaf, jpa, lombok, modelmapper)   
 * DB : mysql    
 * server : aws ec2 amazon linux2    
