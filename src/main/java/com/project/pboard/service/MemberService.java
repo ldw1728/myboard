@@ -26,7 +26,7 @@ import lombok.*;
 @AllArgsConstructor // 모든 필드값을 파라미터로 받는 생성자
 public class MemberService implements UserDetailsService {
     
-    public static UserInfo userInfo;
+    //public static UserInfo userInfo;
     private MemberRepository memberRepository;
 
 
@@ -60,7 +60,9 @@ public class MemberService implements UserDetailsService {
                             .authorities(authorities)
                             .memberDto(mm.map(userEntity, MemberDto.class))
                             .build();*/  
-        return userInfo = new UserInfo(userEntity.getEmail(),userEntity.getPassword(),authorities,mm.map(userEntity, MemberDto.class));      
+
+                             
+        return new UserInfo(userEntity.getEmail(),userEntity.getPassword(),authorities,mm.map(userEntity, MemberDto.class));      
       
     } 
 }

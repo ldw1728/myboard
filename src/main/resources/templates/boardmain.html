@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/boardmain.css">
     <title>Main</title>
+   
 </head>
 <body class="container" >
-  
    <div class="boardview">
+      <div style="text-align: right; margin:10px"><button class="btn btn-outline-dark btn-sm" onclick="location.href='/logout'">logout</button></div>
       <table class="table table-hover">
          <thead class="thead-dark">
             <tr><th>번호</th><th>제목</th><th>글쓴이</th><th>날짜</th><th>조회수</th></tr>
@@ -16,7 +17,7 @@
          <tbody>
             <tr th:each="item : ${items}">
                 <td th:text="${itemStat.count}"></td>
-                      <td class="td-title"><a th:href="@{'/board/detail/' + ${itemStat.count}}"><span th:text="${item.title}"></span></a></td> 
+                      <td class="td-title"><a th:href="@{'/board/' + ${itemStat.count}}"><span th:text="${item.title}"></span></a></td> 
                       <td th:text="${item.writer.name}"></td>
                       <td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
                       <td th:text="${item.count}"></td>
@@ -45,5 +46,7 @@
              </form>
             </span>
    </div>
+  
 </body>
+<div id="logout"></div>
 </html>

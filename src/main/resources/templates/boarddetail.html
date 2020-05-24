@@ -8,9 +8,10 @@
 
 </head>
 <body class="container">
-
+    
     <input id = "num" type="hidden" value="${num}">
 <div class="boardview">
+    <div style="text-align: right; margin:10px;"><span><button class="btn btn-outline-dark btn-sm" onclick="location.href='/logout'">logout</button></span></div>
     <h1 style="padding: 10px;"th:text="${boardDto.title}"></h1>
    <h6>작성자 : [[${boardDto.writer.name}]]</h6>
    <h6 th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</h6>
@@ -25,11 +26,11 @@
         </div>
     </p>
     <div th:if="${writer == true}"class="board-btns">
-        <a th:href="@{'/board/edit/' + ${num}}">
+        <a th:href="@{'/board/' + ${num}}">
             <button class="btn btn-outline-dark btn-sm">수정</button>
         </a>
    
-        <form id="delete-form" th:action="@{'/board/detail/' + ${num}}" method="post">
+        <form id="delete-form" th:action="@{'/board/' + ${num}}" method="post">
             <input type="hidden" name="_method" value="DELETE"/>
             <button id="delete-btn" class="btn btn-outline-dark btn-sm">삭제</button>
         </form>

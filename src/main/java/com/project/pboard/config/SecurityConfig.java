@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -29,6 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return new BCryptPasswordEncoder();
     }
 
+    @Bean 
+    public AuthenticationSuccessHandler successHandler(){
+        return new CustomLoginSuccessHandler("/");
+    }
+
     @Override
     public void configure(WebSecurity web) throws Exception
     {
@@ -44,8 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .antMatchers("/signup").permitAll()
             .and()
             .formLogin()
+            .successHandler(successHandler())
             .loginPage("/login")
-            .defaultSuccessUrl("/login/successPage")
             .failureUrl("/login/failedPage")
             .permitAll()
             .and()
@@ -56,8 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .csrf().disable();
     }
 
+
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(membereService).passwordEncoder(passwordEncoder());
+        
     }
 }

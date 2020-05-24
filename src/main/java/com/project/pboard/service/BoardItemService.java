@@ -3,6 +3,7 @@ package com.project.pboard.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.project.pboard.UserInfo;
 import com.project.pboard.model.BoardItemDTO;
 import com.project.pboard.model.BoardItemEntity;
 import com.project.pboard.model.PagingVO;
@@ -13,6 +14,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,8 +56,9 @@ public class BoardItemService {
     @Transactional
     public Long saveBoardItemEntity(BoardItemDTO.BoardDetailDTO bidto) throws IllegalAccessException {
         try{
-            if(MemberService.userInfo.isEnabled()){
-                bidto.setWriter(MemberService.userInfo.getMemberDto());
+            UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if(userInfo.isEnabled()){
+                bidto.setWriter(userInfo.getMemberDto());
                 return bir.save(bidto.toEntity()).getId();
             }else{
                  return (long) -1;

@@ -3,13 +3,13 @@ package com.project.pboard.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.project.pboard.UserInfo;
 import com.project.pboard.model.BoardItemDTO;
 import com.project.pboard.model.CommentsDTO;
 import com.project.pboard.model.FileEntity;
 import com.project.pboard.service.BoardItemService;
 import com.project.pboard.service.CommentsService;
 import com.project.pboard.service.FileService;
-import com.project.pboard.service.MemberService;
 
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.slf4j.Logger;
@@ -21,6 +21,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,7 +49,7 @@ public class BoardItemController {
 
     @GetMapping("/main")
     public String getAllList(Model model, @PageableDefault Pageable pageable){
-        logger.debug("getListAll()");
+
         List<BoardItemDTO.BoardDetailDTO> temp = bis.getBoardItemsOfPage(pageable);
         model.addAttribute("items", temp);
         model.addAttribute("page", bis.getPagingVO());
@@ -80,9 +81,10 @@ public class BoardItemController {
         }
     }
 
-    @GetMapping("/detail/{no}")
+    @GetMapping("/{no}")
     public String detailPage(@PathVariable("no") int no, Model model) throws IllegalAccessException {
         try{
+            UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             BoardItemDTO.BoardDetailDTO boardDetailDTO = bis.getBoardDetailDTOs().get(no-1);
 
             fileService.getFiles(boardDetailDTO.getId());
@@ -93,7 +95,7 @@ public class BoardItemController {
             model.addAttribute("comments", commentsService.getComments(boardDetailDTO.getId()));
             model.addAttribute("num", no);
 
-            if(boardDetailDTO.getWriter().getEmail().equals(MemberService.userInfo.getUsername())){
+            if(boardDetailDTO.getWriter().getEmail().equals(userInfo.getUsername())){
                 model.addAttribute("writer", true);
             }
 
@@ -121,7 +123,7 @@ public class BoardItemController {
         return "boardupdate";
     }
 
-    @PutMapping("/edit/{no}")
+    @PutMapping("/{no}")
     public String updateBoardItem(BoardItemDTO.BoardDetailDTO boardDTO, @RequestParam("uploadFiles") MultipartFile[] files) throws IllegalAccessException,
             FileUploadException {
 
@@ -138,7 +140,7 @@ public class BoardItemController {
         }
     }
 
-    @DeleteMapping("/detail/{no}")
+    @DeleteMapping("/{no}")
     public String deletePost(@PathVariable("no") int no){
         commentsService.deleteComments(bis.deletePost(no-1));
         return "redirect:/board/main";
@@ -167,10 +169,11 @@ public class BoardItemController {
 
     @PostMapping("/newcomment/{no}/{bid}")
     public String saveNewComment(@PathVariable("no")int no, @PathVariable("bid")Long bid, CommentsDTO commentsDTO){
+        UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         commentsDTO.setBid(bid);
-        commentsDTO.setWriter(MemberService.userInfo.getMemberDto().getName());
+        commentsDTO.setWriter(userInfo.getMemberDto().getName());
         commentsService.saveComment(commentsDTO);
 
-        return "redirect:/board/detail/"+no;
+        return "redirect:/board/"+no;
     }
 }
