@@ -348,11 +348,29 @@
   .boardview:hover{
     opacity: 1;
   }
-
+ 
   .td-title{
     
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }
+
+  .myInfo{
+    
+    margin: 10px;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  .myInfo strong{
+    margin-left: 10px;
+    font-weight: bolder;
+    font-size: large;
+  }
+  
+
+ 
+
+  
    

@@ -15,7 +15,7 @@ public class UserInfo extends User {
 
     private static final long serialVersionUID = 1999406089190871126L;
     
-    private  MemberDto memberDto;
+    private MemberDto memberDto;
     private String clientIp;
     
 

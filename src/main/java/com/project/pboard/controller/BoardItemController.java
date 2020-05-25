@@ -21,6 +21,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,11 +49,14 @@ public class BoardItemController {
     
 
     @GetMapping("/main")
-    public String getAllList(Model model, @PageableDefault Pageable pageable){
+    public String getAllList(Model model, @PageableDefault Pageable pageable, Authentication auth){
 
         List<BoardItemDTO.BoardDetailDTO> temp = bis.getBoardItemsOfPage(pageable);
         model.addAttribute("items", temp);
         model.addAttribute("page", bis.getPagingVO());
+
+        UserInfo user = (UserInfo)auth.getPrincipal();
+        model.addAttribute("auth",user);
         
         //model.addAttribute("page", bis.getPageData());
 

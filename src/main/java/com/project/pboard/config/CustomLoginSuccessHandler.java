@@ -25,7 +25,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
     Authentication authentication)throws ServletException, IOException{
 
-        UserInfo user = ((UserInfo)authentication.getPrincipal());
+        UserInfo user = (UserInfo)authentication.getPrincipal();
         user.setClientIp( getClientIp(request));
         logger.debug(user.getMemberDto().getEmail()+" : "+user.getMemberDto().getName()+" : "+user.getClientIp());
         String redirectUrl = "/login/successPage";

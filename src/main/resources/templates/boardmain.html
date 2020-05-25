@@ -4,12 +4,38 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/boardmain.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
     <title>Main</title>
    
 </head>
 <body class="container" >
    <div class="boardview">
-      <div style="text-align: right; margin:10px"><button class="btn btn-outline-dark btn-sm" onclick="location.href='/logout'">logout</button></div>
+   <div style="padding: 5px;">
+      <span style=" float:left; padding: 5px;"><button class="btn btn-outline-dark btn-sm" id="myInfoBtn">내 정보</button></span>
+      <script type="text/javascript">
+         
+         let myInfoBtn = false;
+         function onClickMyInfo(){
+            if(myInfoBtn == false){
+               myInfoBtn = true;
+               $(".myInfo").css("opacity", "1");
+            }
+            else{
+               myInfoBtn = false;
+               $(".myInfo").css("opacity", "0");
+            }
+         }
+         $("#myInfoBtn").click(onClickMyInfo);
+         </script>
+      <span class="myInfo"> <strong>name :</strong>  [[${auth.memberDto.name}]]   
+                           <strong>email :</strong>  [[${auth.memberDto.email}]]   
+                            <strong>ip :</strong>  [[${auth.clientIp}]]
+      </span>
+      <span style="float:right; padding: 5px;"><button class="btn btn-outline-dark btn-sm" onclick="location.href='/logout'">logout</button></span>
+      
+   </div>
+      
       <table class="table table-hover">
          <thead class="thead-dark">
             <tr><th>번호</th><th>제목</th><th>글쓴이</th><th>날짜</th><th>조회수</th></tr>
