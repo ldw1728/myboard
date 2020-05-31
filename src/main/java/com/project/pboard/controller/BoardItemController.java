@@ -152,22 +152,25 @@ public class BoardItemController {
     }
 
     @GetMapping("/search")
-    public String searchBoard(@RequestParam(value = "keyword") String keyWord, Model model){
+    public String searchBoard(@RequestParam(value = "keyword") String keyWord, Model model, Authentication auth){
         List<BoardItemDTO.BoardDetailDTO> boardIitemDTOs = new ArrayList<>();
         
             boardIitemDTOs = bis.searchBoardItems(keyWord);
         
         model.addAttribute("items", boardIitemDTOs);
+        UserInfo user = (UserInfo)auth.getPrincipal();
+        model.addAttribute("auth",user);
         return "boardmain";
     }
 
     @GetMapping("/search/page")
-    public String getsearchItems(@RequestParam(value = "stat") String stat, Model model){
+    public String getsearchItems(@RequestParam(value = "stat") String stat, Model model, Authentication auth){
         List<BoardItemDTO.BoardDetailDTO> boardIitemDTOs = new ArrayList<>();
         boardIitemDTOs = bis.getSearchItemsOfPage(stat);
 
         model.addAttribute("items", boardIitemDTOs);
-
+        UserInfo user = (UserInfo)auth.getPrincipal();
+        model.addAttribute("auth",user);
         return "boardmain";
     }
 

@@ -26,9 +26,12 @@
         </div>
     </p>
     <div th:if="${writer == true}"class="board-btns">
-        <a th:href="@{'/board/' + ${num}}">
-            <button class="btn btn-outline-dark btn-sm">수정</button>
-        </a>
+        <form th:action="@{'/board/edit/' + ${num}}" method="get">
+            
+                <button class="btn btn-outline-dark btn-sm">수정</button>
+           
+        </form>
+        
    
         <form id="delete-form" th:action="@{'/board/' + ${num}}" method="post">
             <input type="hidden" name="_method" value="DELETE"/>

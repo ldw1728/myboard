@@ -9,7 +9,7 @@
 </head>
 <body class="container">
     <div class="boardview">
-        <form th:action="@{'/board/edit/' + ${boardItemDTO.id}}" method="post" enctype="multipart/form-data">
+        <form th:action="@{'/board/' + ${boardItemDTO.id}}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PUT"/>
             <input type="hidden" name="id" th:value="${boardItemDTO.id}"/>
             <div class="form-group">
