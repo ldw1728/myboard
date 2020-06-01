@@ -17,6 +17,11 @@ backend -
  - 검색, 페이징, 댓글 기능, 조회수 기능
  - aws ec2를 이용하여 배포.
  
+ ## issue 
+ 로컬에서는 문제없었던 인코딩문제가 서버에서 발생. 한글로 입력 시 오류.
+ -> ec2서버 db의 각 table마다 utf8로 charater set을 설정하여 해결 
+ mvn package시에 오류가 난다면 자바 버전확인, maven java 경로 확인, 프로젝트 폴더의 권한모드 확인.
+ 
 
 ## 구동
 <img src="/myboard/login.PNG" width="400" height="250"></img>
