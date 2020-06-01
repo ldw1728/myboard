@@ -42,8 +42,8 @@
          </thead>
          <tbody>
             <tr th:each="item : ${items}">
-                <td th:text="${itemStat.count}"></td>
-                      <td class="td-title"><a th:href="@{'/board/' + ${itemStat.count}}"><span th:text="${item.title}"></span></a></td> 
+                <td th:text="${item.id}"></td>
+                      <td class="td-title"><a th:href="@{'/board/' + ${itemStat.count}}"><span th:text="${item.title}"></span></a></td>
                       <td th:text="${item.writer.name}"></td>
                       <td th:text="${#temporals.format(item.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
                       <td th:text="${item.count}"></td>

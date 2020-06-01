@@ -14,6 +14,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +40,8 @@ public class BoardItemService {
         
         pagingVO = new PagingVO();
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber()-1);
-        pageable = PageRequest.of(page, 10); 
+        pageable = PageRequest.of(page, 10, Sort.by("id").descending()); 
+        
 
         Page<BoardItemEntity> pageData = bir.findAll(pageable);
 

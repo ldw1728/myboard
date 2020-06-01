@@ -76,7 +76,7 @@ public class BoardItemController {
         if(result == -1){
             return "redirect:/login";
         }else{
-            if(files.length > 1){
+            if(files.length > 0){
                 for(MultipartFile m : files){
                     logger.debug(fileService.saveFile(m, result)+ "");
                 }
