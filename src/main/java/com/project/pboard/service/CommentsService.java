@@ -36,4 +36,9 @@ public class CommentsService {
     public void deleteComments(Long bid){
         commentsRepository.deleteByBid(bid);
     }
+
+    @Transactional
+    public void deleteCommnet(Long cid){
+        commentsRepository.deleteById(cid);
+    }
 }

@@ -1,5 +1,7 @@
 package com.project.pboard.controller;
 
+import javax.persistence.criteria.CriteriaBuilder.Case;
+
 import com.project.pboard.model.MemberDto;
 import com.project.pboard.service.MemberService;
 
@@ -53,8 +55,24 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public String execSignUp(MemberDto memberDto) {
-        memberService.joinUser(memberDto);
+    public String execSignUp(MemberDto memberDto, Model model) {
+        long r=0;
+        if(( r= memberService.joinUser(memberDto)) < 0){
+
+            switch(Long.toString(r)){
+                case "-1" : 
+                model.addAttribute("nameerr", true);
+                return "signup";
+
+                case "-2" :
+                model.addAttribute("emailerr", true);
+                return "signup";
+
+                case "-3" :
+                model.addAttribute("empty", true);
+                return "signup";
+            }
+        }
         return "redirect:/login";
     }
     

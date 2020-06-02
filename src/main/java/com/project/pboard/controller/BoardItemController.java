@@ -3,6 +3,8 @@ package com.project.pboard.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.project.pboard.UserInfo;
 import com.project.pboard.model.BoardItemDTO;
 import com.project.pboard.model.CommentsDTO;
@@ -98,7 +100,7 @@ public class BoardItemController {
             model.addAttribute("boardDto", boardDetailDTO);
             model.addAttribute("comments", commentsService.getComments(boardDetailDTO.getId()));
             model.addAttribute("num", no);
-
+            model.addAttribute("username", userInfo.getMemberDto().getName());
             if(boardDetailDTO.getWriter().getEmail().equals(userInfo.getUsername())){
                 model.addAttribute("writer", true);
             }
@@ -175,7 +177,7 @@ public class BoardItemController {
     }
 
     @PostMapping("/newcomment/{no}/{bid}")
-    public String saveNewComment(@PathVariable("no")int no, @PathVariable("bid")Long bid, CommentsDTO commentsDTO){
+    public String saveNewComment(@PathVariable("no")int no, @PathVariable("bid")Long bid, CommentsDTO commentsDTO, HttpServletRequest request){
         UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         commentsDTO.setBid(bid);
         commentsDTO.setWriter(userInfo.getMemberDto().getName());
@@ -183,4 +185,13 @@ public class BoardItemController {
 
         return "redirect:/board/"+no;
     }
+
+    @GetMapping("/{no}/comment/delete/{cid}")
+    public String deleteCommnet(@PathVariable("no")int no, @PathVariable("cid")Long cid){
+        commentsService.deleteCommnet(cid);
+
+        return "redirect:/board/"+no;
+    }
+
+
 }

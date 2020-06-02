@@ -52,8 +52,13 @@
                 </div>
                 
                 <div class="comment" th:each="commentDTO : ${comments}">
-                    <label for="comment"><span id="comment-writer">[[${commentDTO.writer}]]</span><span id="comment-date">[[${#temporals.format(commentDTO.createdDate, 'yyyy-MM-dd HH:mm')}]]</span></label>
+                    <label for="comment">
+                        <span id="comment-writer">[[${commentDTO.writer}]]</span>
+                        <span id="comment-date">[[${#temporals.format(commentDTO.createdDate, 'yyyy-MM-dd HH:mm')}]]</span>
+                        <span th:if="${username.equals(commentDTO.writer)}"><a th:href="@{'/board/'+${num}+'/comment/delete/'+${commentDTO.id}}"><button type="button" class="close">&times;</button></a></span>
+                    </label>
                     <div>[[${commentDTO.comment}]]</div>
+                    
                 </div>
         </div>
 </div>

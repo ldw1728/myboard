@@ -32,6 +32,19 @@ public class MemberService implements UserDetailsService {
 
     @Transactional 
     public Long joinUser(MemberDto memberDto){ //회원가입을 처리하는 메소드
+
+        if(memberDto.getName().equals("") || 
+            memberDto.getEmail().equals("") ||
+            memberDto.getPassword().equals(""))
+            return (long)-3;
+
+        if(memberRepository.findByName(memberDto.getName()).isPresent()){
+            return (long) -1;
+        }
+        if(memberRepository.findByEmail(memberDto.getEmail()).isPresent()){
+            return (long)-2;
+        }
+
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); //패스워드 암호화를 위한 객체
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword())); //암호화
 

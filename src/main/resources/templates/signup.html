@@ -9,9 +9,13 @@
             signUp Page
         </title>
         <link href="/css/signup.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     </head>
     
     <body>
+        <div th:if="${emailerr ==true}">이미 존재하는 email</div>
+        <div th:if="${nameerr ==true}">이미 존재하는 name</div>
+        <div th:if="${empty ==true}">빈칸모두 입력해주세요</div>
         <div class="span3 well">
             <legend>Sign up!</legend>
           <form accept-charset="UTF-8" th:action="@{/signup}" method="post">
