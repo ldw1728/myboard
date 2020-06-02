@@ -101,6 +101,8 @@ public class BoardItemController {
             model.addAttribute("comments", commentsService.getComments(boardDetailDTO.getId()));
             model.addAttribute("num", no);
             model.addAttribute("username", userInfo.getMemberDto().getName());
+            
+            
             if(boardDetailDTO.getWriter().getEmail().equals(userInfo.getUsername())){
                 model.addAttribute("writer", true);
             }
@@ -192,6 +194,4 @@ public class BoardItemController {
 
         return "redirect:/board/"+no;
     }
-
-
 }

@@ -11,7 +11,11 @@
     
     <input id = "num" type="hidden" value="${num}">
 <div class="boardview">
-    <div style="text-align: right; margin:10px;"><span><button class="btn btn-outline-dark btn-sm" onclick="location.href='/logout'">logout</button></span></div>
+    <div style="padding-bottom: 20px;">
+        <span style="float: left;"><a th:href="@{/board/main}"><button class="btn btn-outline-dark btn-sm" >목록으로</button></a></span>
+        <span style="float: right;"><button class="btn btn-outline-dark btn-sm" onclick="location.href='/logout'">logout</button></span>
+    </div>
+    <br>
     <h1 style="padding: 10px;"th:text="${boardDto.title}"></h1>
    <h6>작성자 : [[${boardDto.writer.name}]]</h6>
    <h6 th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</h6>
