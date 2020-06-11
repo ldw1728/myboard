@@ -2,9 +2,7 @@ package com.project.pboard.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import com.project.pboard.UserInfo;
 import com.project.pboard.model.BoardItemDTO;
 import com.project.pboard.model.CommentsDTO;
@@ -12,7 +10,6 @@ import com.project.pboard.model.FileEntity;
 import com.project.pboard.service.BoardItemService;
 import com.project.pboard.service.CommentsService;
 import com.project.pboard.service.FileService;
-
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,7 +75,8 @@ public class BoardItemController {
         if(result == -1){
             return "redirect:/login";
         }else{
-            if(files.length > 0){
+            if(files.length > 0 && files[0].getSize() != 0){
+                logger.debug(files.length+"");
                 for(MultipartFile m : files){
                     logger.debug(fileService.saveFile(m, result)+ "");
                 }
@@ -97,11 +95,11 @@ public class BoardItemController {
             model.addAttribute("files", fileService.getTemp());
             
             bis.saveCount(boardDetailDTO);
+        
             model.addAttribute("boardDto", boardDetailDTO);
             model.addAttribute("comments", commentsService.getComments(boardDetailDTO.getId()));
             model.addAttribute("num", no);
             model.addAttribute("username", userInfo.getMemberDto().getName());
-            
             
             if(boardDetailDTO.getWriter().getEmail().equals(userInfo.getUsername())){
                 model.addAttribute("writer", true);
@@ -139,7 +137,7 @@ public class BoardItemController {
         if(result == -1){
             return "redirect:/login";
         }else{
-            if(files.length > 0){
+            if(files.length > 0 && files[0].getSize() != 0){
                 for(MultipartFile m : files){
                     logger.debug(fileService.saveFile(m, result)+ "");
                 }
@@ -152,7 +150,6 @@ public class BoardItemController {
     public String deletePost(@PathVariable("no") int no){
         commentsService.deleteComments(bis.deletePost(no-1));
         return "redirect:/board/main";
-
     }
 
     @GetMapping("/search")

@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" href="/css/boardupdate.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/classic/ckeditor.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -18,8 +19,8 @@
             </div>
             <h6>작성자 : [[${boardItemDTO.writer.name}]]</h6> 
             <div class="form-group">
-                <label for="comment"><h6>내용:</h6></label>
-                <textarea style="overflow-y: visible; resize: none;"class="form-control" id="comment"name="contents" rows="10" cols="10" th:text="${boardItemDTO.contents}"></textarea>
+                <label for="content"><h6>내용:</h6></label>
+                <textarea style="overflow-y: visible; resize: none;"class="form-control" id="content"name="contents" rows="10" cols="10" th:text="${boardItemDTO.contents}"></textarea>
             </div>
         
             <br>        
@@ -30,4 +31,5 @@
         </form>
     </div>
 </body>
+<script src="/js/ckeditor.js"></script>
 </html>

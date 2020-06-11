@@ -3,6 +3,17 @@
 <head>
     <link rel="stylesheet" href="/css/boardnewpost.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/classic/ckeditor.js"></script>
+    <style>
+      .ck-editor__editable{
+          max-height: 500px;
+          min-height: 500px;
+      }
+      .cke_show_borders{
+          overflow: scroll;
+      }
+
+    </style>
     <meta charset="UTF-8">
     <title>newPost</title>
 </head>
@@ -14,8 +25,8 @@
                 <input type="text" class="form-control" id="title" name="title">
               </div>
             <div class="form-group">
-                <label for="comment"><h6>내용:</h6></label>
-                <textarea style="overflow-y: visible; resize: none;"class="form-control" id="comment"name="contents" rows="10" cols="10"></textarea>
+                <label for="content"><h6>내용:</h6></label>
+                <textarea style="overflow-y: visible; resize: none;"class="form-control" id="content"name="contents"></textarea>
             </div>
             <div style="text-align: right;">
                 <input type="file" id="file" name="uploadFiles" multiple="multiple">
@@ -24,4 +35,5 @@
         </form>
     </div>
 </body>
+<script src="/js/ckeditor.js"></script>
 </html>

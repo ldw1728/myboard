@@ -1,7 +1,6 @@
 
 const commentForm = document.getElementById("commentGroup");
 
-
 let clickBtn = false;
 
 function onClickCommentBtn(){
@@ -18,10 +17,21 @@ function onClickCommentBtn(){
     }
 }
 
+
 function init(){
     commentBtn.onclick = onClickCommentBtn;
     commentForm.style.display = "none";
-    
+
+
 }
+    
 
 init();
+
+
+
+
+
+
+
+

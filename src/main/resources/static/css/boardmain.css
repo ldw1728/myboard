@@ -301,7 +301,7 @@
   }
 
   .container {
-    
+    height: 900px;
     background-image: url(/img/2.jpg);
     background-size: cover;
     background-attachment: fixed;
