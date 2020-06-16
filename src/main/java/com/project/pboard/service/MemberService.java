@@ -26,9 +26,7 @@ import lombok.*;
 @AllArgsConstructor // 모든 필드값을 파라미터로 받는 생성자
 public class MemberService implements UserDetailsService {
     
-    //public static UserInfo userInfo;
     private MemberRepository memberRepository;
-
 
     @Transactional 
     public Long joinUser(MemberDto memberDto){ //회원가입을 처리하는 메소드
@@ -67,14 +65,7 @@ public class MemberService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
         ModelMapper mm = new ModelMapper();
-        /*userInfo = UserInfo.builder()
-                            .username(userEntity.getEmail())
-                            .password(userEntity.getPassword())
-                            .authorities(authorities)
-                            .memberDto(mm.map(userEntity, MemberDto.class))
-                            .build();*/  
-
-                             
+               
         return new UserInfo(userEntity.getEmail(),userEntity.getPassword(),authorities,mm.map(userEntity, MemberDto.class));      
       
     } 

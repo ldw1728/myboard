@@ -49,6 +49,7 @@ public class BoardItemService {
         
         ModelMapper mm = new ModelMapper();
         boardDetailDTOs = mm.map(pageData.getContent(), new TypeToken<List<BoardItemDTO.BoardDetailDTO>>(){}.getType());
+        //Modelmapper를 이용하여 entity -> DTO 변환
        
         return boardDetailDTOs; //boardMainDTO를 이용하여 해당페이지에 필요한 내용만 컨트롤러로 넘겨준다.
     }

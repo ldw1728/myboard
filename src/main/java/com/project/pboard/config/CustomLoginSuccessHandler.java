@@ -24,7 +24,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
     Authentication authentication)throws ServletException, IOException{
-
+        //인증 success 시 실행되는 메소드.
         UserInfo user = (UserInfo)authentication.getPrincipal();
         user.setClientIp( getClientIp(request));
         logger.debug(user.getMemberDto().getEmail()+" : "+user.getMemberDto().getName()+" : "+user.getClientIp());
@@ -34,7 +34,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
        
     }
 
-    public static String getClientIp(HttpServletRequest request) {
+    public static String getClientIp(HttpServletRequest request) { //ip정보를 가져오기 위한 메소드
         String ip = request.getHeader("X-Forwarded-For");
          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
              ip = request.getHeader("Proxy-Client-IP");

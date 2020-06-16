@@ -22,8 +22,9 @@ import lombok.AllArgsConstructor;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
+    //secutiry 관련 config 구현
     private MemberService membereService;
+    //UserDetalService를 implement한 memberService를 참조
 
     @Bean 
     public PasswordEncoder passwordEncoder(){
@@ -68,6 +69,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(membereService).passwordEncoder(passwordEncoder());
-        
+        //password를 인코딩
     }
 }

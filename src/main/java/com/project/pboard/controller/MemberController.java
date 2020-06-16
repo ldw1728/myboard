@@ -58,20 +58,23 @@ public class MemberController {
     public String execSignUp(MemberDto memberDto, Model model) {
         long r=0;
         if(( r= memberService.joinUser(memberDto)) < 0){
-
+            String temp = "";
             switch(Long.toString(r)){
                 case "-1" : 
-                model.addAttribute("nameerr", true);
-                return "signup";
+                temp = "nameerr";
+                break;
 
-                case "-2" :
-                model.addAttribute("emailerr", true);
-                return "signup";
+                case "-2" : 
+                temp = "emailerr";
+                break;
 
                 case "-3" :
-                model.addAttribute("empty", true);
-                return "signup";
+                temp = "empty";
+                break;
             }
+
+            model.addAttribute(temp, true);
+            return "signup";
         }
         return "redirect:/login";
     }
