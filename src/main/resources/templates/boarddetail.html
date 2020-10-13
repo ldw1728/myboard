@@ -11,7 +11,12 @@
 </head>
 
 <body class="container">
-
+<script type = "text/javascript">
+    window.onload = function (){ //현재 body가 onload했을 시 실행되는 함수
+        var body = document.getElementsByTagName("body").item(0);
+        body.style.opacity = "1.0";
+    }
+</script>
     <input id="num" type="hidden" value="${num}">
     <div class="boardview">
         <div style="padding-bottom: 20px;">
@@ -72,5 +77,6 @@
 </div>
 <!--<img class="bg" src="/img/1.jpg">-->
 <script src="/js/boarddetail.js"></script>
+<img class="bg" src="/img/4.jpg">
 </body>
 </html>

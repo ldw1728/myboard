@@ -1,5 +1,6 @@
 package com.project.pboard.model;
 
+import com.project.pboard.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,10 @@ public class MemberDto {
     private String name;
     private String email;
     private String password;
+    private Role role;
+    private String picture;
 
-    public MemberEntity toEntity(){
+    public MemberEntity toEntity() throws NullPointerException{
         return MemberEntity.builder()
         .id(id)
         .name(name)
@@ -24,10 +27,23 @@ public class MemberDto {
     }
 
     @Builder
-    public MemberDto(Long id, String name, String email,String password){
+    public MemberDto(Long id, String name, String email,String password, String picture) throws NullPointerException{
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.picture = picture;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", picture='" + picture + '\'' +
+                '}';
     }
 }

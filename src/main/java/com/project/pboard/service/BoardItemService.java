@@ -3,7 +3,6 @@ package com.project.pboard.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project.pboard.UserInfo;
 import com.project.pboard.model.BoardItemDTO;
 import com.project.pboard.model.BoardItemEntity;
 import com.project.pboard.model.PagingVO;
@@ -15,7 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @Service
-@RequiredArgsConstructor
 public class BoardItemService {
 
     private  List<BoardItemDTO.BoardDetailDTO> boardDetailDTOs = new ArrayList<>();
@@ -58,18 +59,7 @@ public class BoardItemService {
 
     @Transactional
     public Long saveBoardItemEntity(BoardItemDTO.BoardDetailDTO bidto) throws IllegalAccessException {
-        try{
-            UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            if(userInfo.isEnabled()){
-                bidto.setWriter(userInfo.getMemberDto());
-                return bir.save(bidto.toEntity()).getId();
-            }else{
-                 return (long) -1;
-            }
-           
-        }catch(NullPointerException n){
-            return (long) -1;
-        }
+        return bir.save(bidto.toEntity()).getId();
     }
 
     public Long saveCount(BoardItemDTO.BoardDetailDTO bidto){

@@ -1,5 +1,6 @@
 package com.project.pboard.config;
 
+import com.project.pboard.config.auth.CustomLoginSuccessHandler;
 import com.project.pboard.service.MemberService;
 
 
@@ -24,6 +25,7 @@ import lombok.AllArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
     //secutiry 관련 config 구현
     private MemberService membereService;
+
     //UserDetalService를 implement한 memberService를 참조
 
     @Bean 
@@ -52,16 +54,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
             .formLogin()
             .successHandler(successHandler())
-            .loginPage("/login")
+            .loginPage("/mylogin")
             .failureUrl("/login/failedPage")
             .permitAll()
             .and()
             .logout()
-            .logoutUrl("/login")
+            .logoutUrl("/mylogin")
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .invalidateHttpSession(true)
             .and()
-            .csrf().disable();
+                .sessionManagement().invalidSessionUrl("/mylogin")
+                .and()
+                .csrf().disable()
+                .oauth2Login().userInfoEndpoint().userService(membereService);
+
     }
 
 

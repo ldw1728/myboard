@@ -39,7 +39,7 @@ public class BoardItemEntity extends TimeEntity{
     private int count = 0;
 
     @Builder
-    public BoardItemEntity(Long id, MemberEntity writer, String title, String contents, int count){
+    public BoardItemEntity(Long id, MemberEntity writer, String title, String contents, int count) throws NullPointerException{
         this.id = id;
         this.writer = writer;
         this.title = title;

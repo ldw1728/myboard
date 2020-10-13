@@ -1,12 +1,7 @@
 package com.project.pboard.model;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import javax.persistence.Table;
-
+import com.project.pboard.Role;
 import org.springframework.util.Assert;
 
 import lombok.AccessLevel;
@@ -33,19 +28,34 @@ public class MemberEntity {
     @Column(length = 30, nullable = false)
     private String email;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = true)
     private String password;
 
+    @Column
+    private String picture;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @Builder
-    public MemberEntity(Long id, String name, String email, String password){
+    public MemberEntity(Long id, String name, String email, String password,
+                        String picture, Role role) throws NullPointerException{
         Assert.notNull(name, "name must not be null");
         Assert.notNull(email, "email must not be null");
-        Assert.notNull(password, "password must not be null");
         
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.picture = picture;
+        this.role = role;
+    }
+
+    public MemberEntity update(String name, String picture){
+        this.name = name;
+        this.picture = picture;
+        return this;
     }
     
 }

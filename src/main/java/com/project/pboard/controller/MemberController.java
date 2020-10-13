@@ -1,6 +1,7 @@
 package com.project.pboard.controller;
 
 import javax.persistence.criteria.CriteriaBuilder.Case;
+import javax.servlet.http.HttpServletRequest;
 
 import com.project.pboard.model.MemberDto;
 import com.project.pboard.service.MemberService;
@@ -23,10 +24,10 @@ public class MemberController {
     
     static Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-    @GetMapping("/login")
-    public String showLoginPage(Authentication authentication){
+    @GetMapping("/mylogin")
+    public String showLoginPage(HttpServletRequest request){
        try{
-            if(authentication.getPrincipal() != null){
+            if(request.getSession().getAttribute("user") != null){
             return "redirect:/board/main";
         }
        }catch(NullPointerException n){
@@ -76,7 +77,7 @@ public class MemberController {
             model.addAttribute(temp, true);
             return "signup";
         }
-        return "redirect:/login";
+        return "redirect:/mylogin";
     }
     
 }

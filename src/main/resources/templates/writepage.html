@@ -24,6 +24,12 @@
     <title>newPost</title>
 </head>
 <body class="container">
+<script type = "text/javascript">
+    window.onload = function (){ //현재 body가 onload했을 시 실행되는 함수
+        var body = document.getElementsByTagName("body").item(0);
+        body.style.opacity = "1.0";
+    }
+</script>
     <div class="boardview">
         <form  action="/board/newpost" method="post" enctype="multipart/form-data">
             <div class="form-group">
@@ -40,6 +46,7 @@
             </div>
         </form>
     </div>
+    <img class="bg" src="/img/2.jpg">
 </body>
 <script src="/js/ckeditor.js"></script>
 </html>

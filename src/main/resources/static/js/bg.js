@@ -1,4 +1,4 @@
-const body = document.querySelector("body");
+const body = document.querySelector("body"); //랜덤으로 배경화면을 바뀌게 하는 함수인데 현재 안씀.
 
 const IMG_NUMBER = 5;
 

@@ -58,16 +58,23 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
+
   </head>
 
   <body class="text-center">
+  <script type = "text/javascript">
+      window.onload = function (){ //현재 body가 onload했을 시 실행되는 함수
+          var body = document.getElementsByTagName("body").item(0);
+          body.style.opacity = "1.0";
+      }
+  </script>
     <div th:if="${error}" class="alert alert-danger alert-dismissible" id="alert">
       <button type="button" class="close" data-dismiss="alert">×</button>
     <strong>Danger!</strong> 이메일 혹은 비밀번호를 확인하세요.
     </div>
     
-      <form class="form-signin" action="/login" method="post">
-        <h2 style="color: white;"> wookly's board<br>
+      <form class="form-signin" action="/mylogin" method="post">
+          <h2 style="color: white;"> wookly's board</h2><br>
      <h1 >login</h1>
      <label for="inputEmail" class="sr-only">Email address</label>
      <input type="email" name="username" class="form-control" placeholder="Email address" required autofocus>
@@ -80,11 +87,26 @@
      </div>
      <button class="btn btn-outline-dark btn-lg" type="submit"><h2>Sign in</h2></button>
      <button class="btn btn-outline-dark btn-lg" onclick="location.href='/signup'"><h2>Sign up</h2></button>
+            <div class="socialLogin">
+                <button class="btn btn-outline-dark btn-sm" onclick="location.href='/oauth2/authorization/google'">
+                    <img class="favicon_google" src="http://www.google.com/s2/favicons?domain=https://www.google.co.kr">
+                    GOOGLE
+                </button></br>
+                <button class="btn btn-outline-dark btn-sm" onclick="location.href='/oauth2/authorization/naver'">
+                    <img class="favicon_google" src="http://www.google.com/s2/favicons?domain=https://www.naver.com">
+                    NAVER
+                </button></br>
+                <button class="btn btn-outline-dark btn-sm" onclick="location.href='/oauth2/authorization/kakao'">
+                    <img class="favicon_google" src="http://www.google.com/s2/favicons?domain=https://www.kakaocorp.com">
+                    KAKAO
+                </button>
+            </div>
    </form>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<img class="bg" src="/img/5.jpg"></script>
+
+    <img class="bg" src="/img/5.jpg">
 </body>
 </html>

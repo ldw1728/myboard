@@ -21,7 +21,7 @@ public class BoardItemDTO {
         private LocalDateTime modifiedDate;
         private int count;
 
-        public BoardItemEntity toEntity(){
+        public BoardItemEntity toEntity() throws NullPointerException{
             return BoardItemEntity.builder()
             .id(id)
             .writer(writer.toEntity())

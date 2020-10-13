@@ -4,6 +4,7 @@ body {
 }
 
 body {
+  opacity: 0;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -11,6 +12,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+  transition: opacity 0.7s ease-in-out;
 }
 
 .form-signin {
@@ -45,4 +47,17 @@ body {
 
 #alert{
   position: absolute;
+}
+
+.socialLogin{
+
+  margin : 5px;
+  width : 100%;
+  height: fit-content;
+}
+.socialLogin > Button{
+  font-weight: bolder;
+  font-size: large;
+  padding-: 7px;
+  margin: 5px;
 }
