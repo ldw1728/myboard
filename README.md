@@ -1,7 +1,7 @@
 # myboard
 ## 내용
 spring boot 를 이용하여 구현한 게시판    
-http://13.209.44.126:8080
+http://wooklee.kro.kr:8888/
 
 ## 기술
 frontend - bootstap    
