@@ -6,7 +6,7 @@ http://wooklee.kro.kr:8888/
 ## 기술
 frontend - bootstap    
 backend -    
-* framwork : springboot(security, thymeleaf, jpa, lombok, modelmapper)   
+* framwork : springboot(security, OAuth2, thymeleaf, jpa, lombok, modelmapper)   
         - mvc pattern 
 * DB : mysql    
 * server : aws ec2 amazon linux2   
@@ -17,7 +17,8 @@ backend -
  - mysql과 연동하여 CRUD기능 구현 (생성, 조회, 수정, 삭제)    
  - 검색, 페이징, 댓글 기능, 조회수 기능    
  - ckeditor를 이용하여 에디터 기능 및 사진 업로드 기능(클립보드 첨부, 드래그앤드랍)    
- - aws ec2를 이용하여 배포.    
+ - aws ec2를 이용하여 배포.
+ - OAuth2를 사용하여 소셜로그인 기능 추가.
  
  ## Issue 
  * 로컬에서는 문제없었던 인코딩문제가 서버에서 발생. 한글로 입력 시 오류.    
