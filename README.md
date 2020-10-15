@@ -32,7 +32,7 @@ backend -
  * AWS서버에서 java의 mkdir()로 폴더 생성이 안되어 경로 문제 -> 서버 디렉토리의 권한모드 변경.
 
 ## 구동
-<img src="/myboard/login.PNG" width="400" height="250"></img>
+<img src="/myboard/login3.PNG" width="400" height="250"></img>
 <img src="/myboard/main1.PNG" width="400" height="250"></img>
 <img src="/myboard/new1.PNG" width="400" height="250"></img>
 <img src="/myboard/new2.PNG" width="400" height="250"></img>
