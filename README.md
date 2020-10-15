@@ -9,18 +9,20 @@ backend -
 * framwork : springboot(security, OAuth2, thymeleaf, jpa, lombok, modelmapper)   
         - mvc pattern 
 * DB : mysql    
-* server : aws ec2 amazon linux2   
+* server : aws ec2 amazon linux2 / aws RDS MySQL   
 
 ## 기능
  - boot strap 을 이용하여 front end 구현    
  - security로 권한 및 로그인 기능 구현.    
- - mysql과 연동하여 CRUD기능 구현 (생성, 조회, 수정, 삭제)    
+ - AWS RDS mysql과 연동하여 CRUD기능 구현 (생성, 조회, 수정, 삭제)    
  - 검색, 페이징, 댓글 기능, 조회수 기능    
  - ckeditor를 이용하여 에디터 기능 및 사진 업로드 기능(클립보드 첨부, 드래그앤드랍)    
  - aws ec2를 이용하여 배포.
  - OAuth2를 사용하여 소셜로그인 기능 추가.
  
  ## Issue 
+ * AWS VPC를 생성, VPC내부의 private subnet(DBServer)와 public subnet(EC2 webserver)로 구성하여 
+        DBServer를 외부에서는 접근하지못하고 ec2에서만 접근할 수 있도록함.
  * 로컬에서는 문제없었던 인코딩문제가 서버에서 발생. 한글로 입력 시 오류.    
  -> ec2서버 db의 각 table마다 utf8로 charater set을 설정하여 해결     
  * mvn package시에 오류가 난다면 자바 버전확인, maven java 경로 확인, 프로젝트 폴더의 권한모드 확인.   
