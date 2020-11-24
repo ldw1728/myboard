@@ -9,7 +9,7 @@ backend -
 * framwork : springboot(security, OAuth2, thymeleaf, jpa, lombok, modelmapper)   
         - mvc pattern 
 * DB : mysql    
-* server : aws ec2 amazon linux2 / aws RDS MySQL   
+* server : aws ec2 amazon linux2 / aws RDS MySQL
 
 ## 기능
  - boot strap 을 이용하여 front end 구현    
