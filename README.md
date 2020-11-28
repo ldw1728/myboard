@@ -11,6 +11,9 @@ backend -
 * DB : mysql    
 * server : aws ec2 amazon linux2 / aws RDS MySQL
 
+## 구조
+<img src="/myboard/myboardClass.PNG" width="400" height="250"></img>
+
 ## 기능
  - boot strap 을 이용하여 front end 구현    
  - security로 권한 및 로그인 기능 구현.    
