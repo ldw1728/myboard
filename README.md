@@ -12,7 +12,7 @@ backend -
 * server : aws ec2 amazon linux2 / aws RDS MySQL
 
 ## 구조
-<img src="/myboard/myboardClass.PNG" width="400" height="250"></img>
+<img src="/myboard/myboardClass.PNG" width="700" height="400"></img>
 
 ## 기능
  - boot strap 을 이용하여 front end 구현    
