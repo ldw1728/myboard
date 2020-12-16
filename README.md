@@ -1,7 +1,7 @@
 # myboard
 ## 내용
 spring boot 를 이용하여 구현한 게시판    
-http://3.34.150.212:8888/
+~~http://3.34.150.212:8888/~~ (aws관련 문제로 잠시 접속불가)
 
 ## 기술
 frontend - bootstap    
